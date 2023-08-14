@@ -11,10 +11,11 @@ TEXFILES = \
 	tex/results.tex
 IMGFILES = \
 	img/active-directory.png \
+	img/loadmaster-geo.png \
 	img/loadmaster-ids-ips.png \
-	img/loadmaster.png \
+        img/loadmaster-pcre-rules.png \
 	img/login-flow.png \
-	img/rfid-infra.png \
+	img/raspberry-pi-rfid.png \
 	img/whatsup-gold.png
 BIBFILES = bib/main.bib
 
