@@ -2,8 +2,20 @@ FSWATCH = /usr/bin/env fswatch
 LATEXMK = /usr/bin/env latexmk
 
 TEXFILES = \
-	main.tex
-IMGFILES =
+	main.tex \
+	tex/abstract.tex \
+	tex/conclusion.tex \
+	tex/introduction.tex \
+	tex/method.tex \
+	tex/related-work.tex \
+	tex/results.tex
+IMGFILES = \
+	img/active-directory.png \
+	img/loadmaster-ids-ips.png \
+	img/loadmaster.png \
+	img/login-flow.png \
+	img/rfid-infra.png \
+	img/whatsup-gold.png
 BIBFILES = bib/main.bib
 
 .PHONY: all clean watch
