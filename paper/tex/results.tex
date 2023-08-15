@@ -9,15 +9,15 @@ Sect.~\ref{sec:case-two}) to demonstrate this aspect of the system.
 
 \subsection{Internal User with External Threat}\label{sec:case-one}
 
-In the first case the user, John Doe, enters their office during
-normal working hours and swipes their card at the door using an RFID
-tag.  Their group membership is set to Internal and user can then
+In the first case the user, John Doe, enters his office during normal
+working hours and swipes his access card at the door using an RFID
+tag.  His group membership is set to Internal and the user can then
 access the resource internally.  Meanwhile an external threat actor
 attempts to login from outside the office while the user is at work.
-They are denied access and they have their username and IP address
-logged to the SIEM service (WUG) as a breach attempt.  This requires
-no extra overhead on the user to secure their credentials.  The
-timeline of events is as follows:
+They are denied access and they have their IP address logged to the
+SIEM service (WUG) as a breach attempt.  This requires no extra
+overhead on the user to secure his credentials.  The timeline of
+events is as follows:
 
 \begin{figure*}
   \centerline{\includegraphics[width=\textwidth]{img/whatsup-gold-alert}}
@@ -25,11 +25,11 @@ timeline of events is as follows:
 \end{figure*}
 
 \begin{enumerate}
-\item John Doe enters their office and swipes their access card.
+\item John Doe enters his office and swipes his access card.
 \item The user's group membership is changed from External to
   Internal.  This event is logged to the SIEM service from the
   Raspberry Pi.
-\item When the user gets to their desk they access the Web resource
+\item When the user gets to his desk they access the Web resource
   internally.
 \item The DNS points to the LM for DNS resolution of the Web resource
   and since it is an internal request the user is sent to the internal
@@ -44,8 +44,33 @@ timeline of events is as follows:
   via the ESP SSO page.
 \item The group membership is read as Internal, but the source is
   external, so the threat actor is directed to a ``server
-  unavailable'' page and their username and source IP address are
-  logged to the SIEM service (see Fig.~\ref{fig:whatsup-gold-alert}).
+  unavailable'' page and their IP address is logged to the SIEM
+  service (see Fig.~\ref{fig:whatsup-gold-alert}).
 \end{enumerate}
 
 \subsection{External User with Internal Threat}\label{sec:case-two}
+
+In the second case we are concerned with internal threats: rather than
+credentials being leaked externally, they are accessed by a threat
+internally, e.g., someone who may have physical access to the user's
+desk.  The user, Jane Doe, leaves the office for lunch and swipes her
+access card on the RFID reader on the way out.  Her group membership
+is set to External.  Meanwhile an internal threat actor attempts to
+login from inside the office while the user is away.  They are denied
+access and an event is logged to the SIEM service (WUG) as a breach
+attempt.  The timeline of events is as follows:
+
+\begin{enumerate}
+\item Jane Doe leaves her office and swipes his access card.
+\item The user's group membership is changed from Internal to
+  External.  This event is logged to the SIEM service from the
+  Raspberry Pi.
+\item An internal threat actor attempts to access the Web resource
+  using Jane Doe's credentials.
+\item The DNS points the threat actor to the LM for DNS resolution.
+\item Using the correct credentials, the internal threat actor logs in
+  via the ESP SSO page.
+\item The group membership is read as External, but the source is
+  internal, so the threat actor is directed to a ``server
+  unavailable'' page.  The event is logged to the SIEM service.
+\end{enumerate}
