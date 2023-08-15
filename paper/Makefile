@@ -16,6 +16,7 @@ IMGFILES = \
         img/loadmaster-pcre-rules.png \
 	img/login-flow.png \
 	img/raspberry-pi-rfid.png \
+	img/whatsup-gold-alert.png \
 	img/whatsup-gold.png
 BIBFILES = bib/main.bib
 
