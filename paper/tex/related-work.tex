@@ -2,9 +2,9 @@
 
 We categorise related work into four areas: using RFID technology to
 integrate physical and digital security; multi-factor authentication,
-specifically schemes that utilise location as one factor; dynamic
-role-based access control; and the zero trust security model or zero
-trust architecture.
+specifically schemes that utilise location as one of the factors;
+dynamic role-based access control; and the zero trust security model
+or zero trust architecture.
 
 RFID can enhance and modernise conventional approaches to access
 control and authentication.  Clarke~\cite{clarke-11} surveys a range
@@ -20,27 +20,47 @@ infrastructure with eighty RFID readers that gather fine-grained
 location information.  They consider ways of creating utility while
 respecting the privacy of users.  Ostoji\'c et
 al.~\cite{ostojic-et-al-07} deploy a similar system to manage access
-to a parking lot.  There are many concerns surrounding RFID tags
-including cloning, man-in-the-middle attacks, denial-of-service
-attacks, communication layer weaknesses, and physical attacks (see,
-e.g., Ranasinghe and Cole~\cite{ranasinghe-cole-06}).
+to a parking lot.  Our system uses a Raspberry Pi connected to an RFID
+door entry system in a similar manner.  There are many concerns
+surrounding RFID tags including cloning, man-in-the-middle attacks,
+denial-of-service attacks, communication layer weaknesses, and
+physical attacks (see, e.g., Ranasinghe and
+Cole~\cite{ranasinghe-cole-06}).
 
 Ometov et al.~\cite{ometov-et-al-18} surveys multi-factor
 authentication (MFA) schemes: they consider various types of MFA
 sensors including geolocation sensors.  Location-based MFA schemes,
 such as the one described by Ramatsakane and
-Leung~\cite{ramatsakane-leung-17} seeks to balance usability and
+Leung~\cite{ramatsakane-leung-17}, seek to balance usability and
 security.  Suo et al.~\cite{suo-et-al-22} use \textit{location
   signatures} to secure automated vehicles.  A location signature is a
 geo- and time-stamped message issued by a trusted device that attests
 to a vehicle's presence in a particular location at a given
-time~\cite{chen-et-al-09}.
+time~\cite{chen-et-al-09}.  We use the location of a user's access
+card as an authentication factor.
 
-%% dynamic role-based access control
-%% \cite{uzun-et-al-12}
-%% \cite{luo-et-al-16}
-%% \cite{liu-et-al-18} (insider threats)
-%% \cite{chatterjee-et-al-20}
+Dynamic role-based access control (DRBAC) is an extension of
+traditional role-based access control
+(RBAC)~\cite{franqueira-wieringa-12} that enables the automatic
+adjustment of user roles based on factors like context, behavior, and
+risk assessment.  Unlike static RBAC, DRBAC assigns roles dynamically
+in response to real-time conditions, ensuring users have an
+appropriate access level.  This enhances security and adaptability but
+requires real-time evaluation that can be more complex to implement.
+Uzun et al.~\cite{uzun-et-al-12} extend the traditional RBAC model to
+handle temporal and geospatial constraints.  Luo et
+al.~\cite{luo-et-al-16} extend the RBAC model to a cloud environment
+where roles are determined by the security state and network
+availability of the resources.  Chatterjee et
+al.~\cite{chatterjee-et-al-20} describe a decentralised RBAC model
+that relies on a blockchain with smart contracts.  They implement a
+proof-of-concept on the Ethereum virtual machine (EVM) and quantify
+its computational cost in terms of EVM gas.  Finally, Liu et
+al.~\cite{liu-et-al-18} survey insider threats and describe systems
+where host, network and contextual data can identify such threats.
+Our system has a related capability: it can flag insider threats by
+comparing the location of the target with the source of the
+connection.
 
 %% zero trust architecture (ZTA)
 %% \cite{rose-et-al-20}
