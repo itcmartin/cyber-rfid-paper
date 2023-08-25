@@ -42,7 +42,7 @@ card as an authentication factor.
 Dynamic role-based access control (DRBAC) is an extension of
 traditional role-based access control
 (RBAC)~\cite{franqueira-wieringa-12} that enables the automatic
-adjustment of user roles based on factors like context, behavior, and
+adjustment of user roles based on factors like context, behaviour, and
 risk assessment.  Unlike static RBAC, DRBAC assigns roles dynamically
 in response to real-time conditions, ensuring users have an
 appropriate access level.  This enhances security and adaptability but
@@ -62,11 +62,21 @@ Our system has a related capability: it can flag insider threats by
 comparing the location of the target with the source of the
 connection.
 
-%% zero trust architecture (ZTA)
-%% \cite{rose-et-al-20}
-%% \cite{bertino-21}
-%% \cite{garbis-chapman-21}
-%% \cite{ross-et-al-21}
-%% \cite{yao-et-al-21}
-%% \cite{meng-et-al-22}
-%% \cite{syed-et-al-22}
+The zero trust security model or zero trust architecture (ZTA) shifts
+cybersecurity defences from static, network-based perimeters to users,
+assets, and resources that are dynamic and
+perimeter-less~\cite{syed-et-al-22}.  Rose et al.~\cite{rose-et-al-20}
+and Garbis and Chapman~\cite{garbis-chapman-21} define ZTA and
+describe its logical components.  Bertino~\cite{bertino-21} highlights
+management and deployment as the main challenges of ZTA.  Ross et
+al~\cite{ross-et-al-21} show that multiple cyber resiliency
+techniques, can be integrated into the design and deployment of ZTA.
+Yao et al.~\cite{yao-et-al-21} combine ZTA and trust-based access
+control (TBAC) to evaluate the trust of users and compare those
+evaluations against trust thresholds.  In the same vein as above, Meng
+et al.~\cite{meng-et-al-22} utilise a blockchain to decentralise the
+operation of the trusted nodes in a ZTA.  Identifying the location of
+a user and changing their group membership based on that location,
+follows the principles of ZTA.  By making the process fully automated
+and transparent, we can minimise the management and deployment
+overhead.
