@@ -1,1 +1,48 @@
 \section{Introduction}\label{sec:introduction}
+
+To secure a Web resource in a corporate environment, there are two
+modes of access to consider: an on-site user internally accessing the
+resource and a remote user externally accessing the same resource.  In
+the first case, the user is physically located in a building that may
+be guarded by an access control system.  In the second case, the user
+is located outside of those buildings.  However, attempts to access
+the Web resource are often handled similarly in both cases: the
+physical location of the user is ignored.  In this paper we describe a
+system that combines location with credentials when securing Web
+resources.  Specifically, it utilises RFID tags and readers, dynamic
+groups in Microsoft Active Directory or a similar directory service,
+SIEM alerting, and honeypots.  The system provides an additional layer
+of defence that imposes no extra burden on users.
+
+\begin{quote}
+  \em{There is no silver bullet solution with cybersecurity; a layered
+    defence is the only viable defence.}
+
+  \attrib{James Scott, ICIT, https://www.icitech.org/}
+\end{quote}
+
+We deployed the system using a combination of open-source and
+proprietary off-the-shelf components.  The components are loosely
+coupled and interchangeable.  The approach can be adapted to a variety
+of corporate environments that utilise access control systems in their
+buildings.  Furthermore, the system can be layered on top of existing
+infrastructure.
+
+The system distinguishes between internal and external threats and
+records additional context during failed attempts to access a Web
+resource.  Insider threats can be difficult and time-consuming to
+detect~\cite{liu-et-al-18}.  Our system flags occasions where a
+resource is accessed internally using credentials belonging to a user
+that is currently operating remotely.  This runs counter to many
+existing systems where internal traffic is assumed to be safer than
+external traffic.
+
+This paper is organised as follows.  In Sect.~\ref{sec:related-work}
+we review related work, including RFID technology, multi-factor
+authentication, dynamic role-based access control and the zero trust
+security model.  In Sect.~\ref{sec:method} we describe our system:,
+the various components and their configuration.  We detail our results
+in Sect.~\ref{sec:results}.  Specifically, we consider two use cases:
+an internal user with an external threat, and an external user with an
+internal threat.  In both cases, we demonstrate the system's ability
+to flag threats.  Finally, we conclude in Sect.~\ref{sec:conclusion}.
