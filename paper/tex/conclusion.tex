@@ -1,1 +1,30 @@
 \section{Conclusion}\label{sec:conclusion}
+
+Our system demonstrates the feasibility of securing Web resources in a
+corporate environment based on the physical location of users as
+implied by a building access control system.  The system uses dynamic
+group membership in a directory service such as Active Directory to
+store the last known physical location of users.  It updates their
+locations as they swipe their access cards on a RFID reader.  All
+events are logged to a SIEM service, and, in the case of an invalid
+access attempt, the threat actor is directed to a honeypot that flags
+the event as high priority.  The system can prevent both internal and
+external threats without placing additional burden on users.  It is
+constructed from open-source and proprietary off-the-shelf components
+in a vendor-neutral manner.  It adds a additional layer of defence
+when securing Web resources.
+
+Our approach follows the principles of zero trust architecture (ZTA)
+as outlined in Sect.~\ref{sec:related-work}.  The physical location of
+a user determines the appropriate defence around a Web resource.
+Additionally, dynamic group membership is an example of role-based
+access control (RBAC), and specifically, dynamic role-based access
+control (DRBAC) (see Sect.~\ref{sec:related-work}): a user's role is
+automatically adjusted based on context.  The real-time evaluation of
+the context is performed by the directory service.  Our system is a
+proof-of-concept but it can be extended in many ways.  For example, we
+could incorporate temporal information from calendars and attendance
+trackers, e.g., holidays, business travel, medical leave, etc.  We
+could use fine-grained location information~\cite{kriplean-et-al-07}
+and include geospatial data from mobile devices and laptops.
+

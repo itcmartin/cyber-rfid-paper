@@ -5,23 +5,27 @@ goal of the study was to show the feasibility of the integration
 between the various components, and to demonstrate that dynamic group
 membership based on real-world location can secure Web resources.  We
 performed two tests (Sect.~\ref{sec:case-one} and
-Sect.~\ref{sec:case-two}) to demonstrate this aspect of the system.
+Sect.~\ref{sec:case-two}) to demonstrate this feasibility of the
+system.
 
 \subsection{Internal User with External Threat}\label{sec:case-one}
 
-In the first case the user, John Doe, enters his office during normal
+In the first case a user, John Doe, enters his office during normal
 working hours and swipes his access card at the door using an RFID
 tag.  His group membership is set to Internal and the user can then
 access the resource internally.  Meanwhile an external threat actor
 attempts to login from outside the office while the user is at work.
 They are denied access and they have their IP address logged to the
-SIEM service (WUG) as a breach attempt.  This requires no extra
-overhead on the user to secure his credentials.  The timeline of
+SIEM service (WUG) as an invalid access attempt.  This requires no
+extra overhead on the user to secure his credentials.  The timeline of
 events is as follows:
 
 \begin{figure*}
   \centerline{\includegraphics[width=\textwidth]{img/whatsup-gold-alert}}
-  \caption{...}\label{fig:whatsup-gold-alert}
+  \caption{Events that indicate a user's credentials may be
+    compromised are logged in WhatsUp Gold with high priority.  The
+    originating IP address is also
+    recorded.}\label{fig:whatsup-gold-alert}
 \end{figure*}
 
 \begin{enumerate}
@@ -74,3 +78,12 @@ attempt.  The timeline of events is as follows:
   internal, so the threat actor is directed to a ``server
   unavailable'' page.  The event is logged to the SIEM service.
 \end{enumerate}
+
+In both cases, user credentials were already compromised by the threat
+actor.  The first layer of defence had already been breached.
+However, our system cross-checked the last known physical location of
+the user with the source of the traffic and, in the case of a
+discrepancy, denied access to the user and logged the event for
+investigation.  There is no additional burden placed on the user
+during everyday operation, and the threat actor may be unaware that
+their access attempt was flagged as invalid.
