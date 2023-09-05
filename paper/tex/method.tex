@@ -24,7 +24,10 @@ is served by a Web server behind a reverse proxy and load balancer
 (Progress Kemp LoadMaster).  This directs the traffic based on the
 user's group.  It verifies that the source of the user's connection
 matches their known location.  Finally, all of the components send
-logs to a SIEM service.
+logs to a Security Information and Event Management (SIEM) service.
+This aggregates logs, alerts and events into a centralised service
+allowing investigators to perform historical and near real-time
+analysis.
 
 The system is novel in at least two aspects.  Firstly, the access
 control system dynamically changes a user's group membership in the
@@ -63,16 +66,17 @@ We used Microsoft Windows Server 2019 to run a Domain Controller (DC)
 (\texttt{d1.testlab.local}) for our domain (\texttt{testlab.local}).
 This is the primary DC for the scenario and it was setup to host
 Active Directory (AD) with LDAP support and the Domain Name System
-(DNS).  To ensure that the requests for the Web resources went to the
-appropriate services on the Progress Kemp LoadMaster, we created
-corresponding DNS delegations.  This is important as we wanted the
-external requests to be pointed to the external resources and the
-internal requests to be pointed to the internal resources.  It also
-allows the LoadMaster to perform service health checks before
-responding to DNS requests thus preventing IP addresses being returned
-when resources are unavailable.  We added two users, Jane Doe and John
-Doe, and two groups, Internal and External, to AD (see
-Fig.~\ref{fig:active-directory}).
+(DNS).  AD provides authentication and authorisation services, and
+allows administrators to manage network resources centrally.  To
+ensure that the requests for the Web resources go to the appropriate
+services on the Progress Kemp LoadMaster, we created corresponding DNS
+delegations.  This is important as we wanted the external requests to
+be pointed to the external resources and the internal requests to be
+pointed to the internal resources.  It also allows the LoadMaster to
+perform service health checks before responding to DNS requests thus
+preventing IP addresses being returned when resources are unavailable.
+We added two users, Jane Doe and John Doe, and two groups, Internal
+and External, to AD (see Fig.~\ref{fig:active-directory}).
 
 \subsubsection{Raspberry Pi and RFID Door Entry System}
 
@@ -173,7 +177,7 @@ probability that it is malicious.  The core rule set protects against
 SQL injection, cross-site scripting, remote code execution, buffer
 overflows, known vulnerabilities, and many other attack vectors.  We
 configured the WAF with source IP reputation blocking enabled which
-uses a global IP reputation list that is updated daily. Using the
+uses a global IP reputation list that is updated daily.  Using the
 MaxMind~\cite{maxmind-xx} and the GEO component, it identifies the
 country of the source request and it can be configured to block
 specific countries or regions.
