@@ -1,0 +1,27 @@
+It is a fine balance to provide employees with approved and convenient
+access to corporate systems, while still preventing all forms of
+undesired access.  In the case of Web resources, the source of the
+connecting device can be cross-checked with an employee's physical
+location as reported by a building's access control system to better
+strike this balance.  To this end, we assemble a collection of
+open-source and proprietary components including an RFID card reader,
+a directory service with dynamic group membership, a SIEM alerting
+system, and a honeypot.  We show how this assemblage can protect
+against internal and external threats without imposing any additional
+burden on employees.
+
+Many corporate environments already have the requisite components, in
+particular, a building access control system and a centralised
+directory service such as Microsoft Active Directory for
+authentication and authorisation.  We configure the components in a
+loosely coupled architecture that utilises dynamic groups in the
+directory service to store the current location of employees based on
+their swipe access records.  We proxy all requests to the Web
+resources through a load balancer that consults the directory service
+and cross-checks the connection sources with the stored location of
+the employees.  This defends against compromised credential attacks
+from external and internal threat actors: we illustrate this using two
+case studies.  The components are interchangeable and the architecture
+can be adapted to many environments.  Our approach follows the
+principles of the zero trust security model and dynamic role-based
+access control.
