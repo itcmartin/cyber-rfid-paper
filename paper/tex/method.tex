@@ -91,12 +91,12 @@ and External, to AD (see Fig.~\ref{fig:active-directory}).
 The Raspberry Pi is connected to an RFID door entry system.  When a
 user performs a card swipe, a Python script running on the Raspberry
 Pi reads the identification details from the card and remotely changes
-the group membership of the user in AD.  If the user is entering the
+the group membership of the user in AD.\@ If the user is entering the
 building their group membership is changed from External to Internal;
 if they are leaving the building it is changed from Internal to
 External.  The Python script uses the
 \texttt{ldap3}\footnote{https://ldap3.readthedocs.io/} package to
-interact with AD.  It logs all events to a SIEM service (see
+interact with AD.\@ It logs all events to a SIEM service (see
 Sect.~\ref{sec:wug}).
 
 \subsubsection{Progress Kemp LoadMaster}
@@ -106,10 +106,10 @@ balancer~\cite{progress-kemp-loadmaster-xx}.  It has many capabilities
 but for this scenario we are interested in the Edge Security Pack
 (ESP), the source IP blacklist from the GEO component, and the Web
 Application Firewall (WAF).  We use the ESP for Single Sign-On (SSO)
-for HTTP(S) services and to communicate with AD during login and to
+for HTTPS services and to communicate with AD during login and to
 query group memberships.  This pre-authenticates a user before they
 gain access to a resource.  We also enabled \textit{group steering} on
-the ESP: this allows LM to send traffic to particular services based
+the ESP:\@ this allows LM to send traffic to particular services based
 on their group membership in AD and goes beyond the normal use of
 groups to simply allow or deny access.
 
@@ -121,7 +121,7 @@ groups to simply allow or deny access.
 \end{figure*}
 
 We created two steering groups associated with the Internal and
-External groups in AD.  We created Perl Compatible Regular Expression
+External groups in AD.\@ We created Perl Compatible Regular Expression
 (PCRE) rules to match the authorisation headers and steer the requests
 to the appropriate services (see
 Fig.~\ref{fig:loadmaster-pcre-rules}).
@@ -163,12 +163,12 @@ that is updated daily to withhold DNS results from anyone on the list.
 \end{figure*}
 
 Additionally, we enabled the Intrusion Detection System (IDS) and
-Intrusion Prevention Systems (IPS) on LM.  This includes rules defined
-by the SNORT community~\cite{cisco-snort-xx} and enables the SNORT
-rule filtering on the Layer 7 HTTP engine to check for any known bad
-requests.  Figure~\ref{fig:loadmaster-ids-ips} shows the configuration
-highlighted in green.  There is also an option to prevent access via
-whitelists and blacklists highlighted in blue.
+Intrusion Prevention Systems (IPS) on LM.\@ This includes rules
+defined by the Snort community~\cite{cisco-snort-xx} and enables the
+Snort rule filtering on the Layer 7 HTTP engine to check for any known
+bad requests.  Figure~\ref{fig:loadmaster-ids-ips} shows the
+configuration highlighted in green.  There is also an option to
+prevent access via whitelists and blacklists highlighted in blue.
 
 Finally, we enabled the Web Application Firewall (WAF) and the Open
 Web Application Security Project (OWASP) core rule set.  This rule set
