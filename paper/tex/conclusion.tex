@@ -11,7 +11,7 @@ access attempt, the threat actor is directed to a honeypot that flags
 the event as high priority.  The system can prevent both internal and
 external threats without placing additional burden on users.  It is
 constructed from open-source and proprietary off-the-shelf components
-in a vendor-neutral manner.  It adds a additional layer of defence
+in a vendor-neutral manner.  It adds an additional layer of defence
 when securing Web resources.
 
 Our approach follows the principles of zero trust architecture (ZTA)
@@ -28,3 +28,27 @@ trackers, e.g., holidays, business travel, medical leave, etc.  We
 could use fine-grained location information~\cite{kriplean-et-al-07}
 and include geospatial data from mobile devices and laptops.
 
+Our system has limitations.  Firstly, RFID tags and readers are
+vulnerable to communication layer weaknesses, man-in-the-middle
+attacks, and physical attacks, amongst
+others~\cite{ranasinghe-cole-06}.  Secondly, location-based profiling
+can lead to a culture of tracking and surveillance and violate the
+privacy of employees~\cite{ostojic-et-al-07}.  Thirdly, the mapping of
+connection sources to physical locations is imperfect due to
+technologies such as proxies and VPNs~\cite{luna-21}.  This leads to
+false positives (employees flagged as threats) and false negatives
+(threats going undetected).  Finally, our system requires additional
+configuration and management, e.g. the locations of the card readers
+must be paired with expected connection sources and the SIEM system
+needs regular monitoring.  There can be challenges in upgrading legacy
+infrastructure and integrating the components as described above.
+Furthermore, the integration can impact application performance, e.g.,
+the additional overhead on each access attempt.
+
+In our future work, we would like to evaluate the system using a
+mid-size, real-world deployment.  The limitations above can only be
+addressed in the wild.  For example, we could use progressive
+deployment strategies to evaluate the trade-off between the additional
+configuration and management and the rate of threat detection, e.g.,
+by performing a split test between two buildings in the same corporate
+environment.
